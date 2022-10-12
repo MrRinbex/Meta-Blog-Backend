@@ -1,8 +1,9 @@
 import mysql from "mysql2";
+import "./loadEnv.js";
 
 export const database = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Bombonelu",
-  database: "meta blog 3.0",
+  host: process.env.HOST,
+  user: process.env.ROOT,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
 });
