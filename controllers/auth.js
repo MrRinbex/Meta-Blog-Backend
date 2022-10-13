@@ -58,4 +58,14 @@ export const login = (req, res) => {
   });
 };
 
-export const logout = (req, res) => {};
+export const logout = (req, res) => {
+  // USER LOG OUT
+
+  res
+    .clearCookie("access_token", {
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .json("User logged out");
+};
