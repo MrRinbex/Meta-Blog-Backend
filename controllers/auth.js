@@ -45,11 +45,14 @@ export const login = (req, res) => {
     if (!isPasswordCorrect)
       return res.status(400).json("identifiant ou mot de passe incorrect");
 
-    const key = process.env.JWT;
+    const key = process.env.JWT_KEY;
     const token = jwt.sign({ id: data[0].id }, key);
+    console.log(token);
     const { password, ...other } = data[0]; //DATA OTHER THEN PASSWORD
-
     res
+      // .setHeader("access_token", token, {
+      //   httpOnly: true,
+      // })
       .cookie("access_token", token, {
         httpOnly: true,
       })
