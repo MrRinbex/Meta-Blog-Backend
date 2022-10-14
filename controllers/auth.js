@@ -47,12 +47,8 @@ export const login = (req, res) => {
 
     const key = process.env.JWT_KEY;
     const token = jwt.sign({ id: data[0].id }, key);
-    console.log(token);
     const { password, ...other } = data[0]; //DATA OTHER THEN PASSWORD
     res
-      // .setHeader("access_token", token, {
-      //   httpOnly: true,
-      // })
       .cookie("access_token", token, {
         httpOnly: true,
       })

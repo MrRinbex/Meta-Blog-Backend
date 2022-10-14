@@ -31,7 +31,6 @@ export const updatePost = (req, res) => {};
 
 export const deletePost = (req, res) => {
   const token = req.cookies.access_token;
-  console.log(token);
   if (!token) return res.status(401).json("Not Authenticated!");
 
   const key = process.env.JWT_KEY;
@@ -40,12 +39,12 @@ export const deletePost = (req, res) => {
     if (err) return res.status(403).json("Not valid Token");
 
     const postId = req.params.id;
-    const q = "DELETE FROM posts WHERE `ìd` = ? AND `userid` = ?";
+    const q = "DELETE FROM posts WHERE id=? AND `userid`=?";
 
     database.query(q, [postId, userInfo.id], (err, data) => {
-      if (err)
+      if (err) {
         return res.status(403).json("You are not allowed to delete this post");
-
+      }
       return res.json("Post deleted");
     });
   });
