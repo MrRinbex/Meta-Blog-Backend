@@ -5,6 +5,8 @@ import usersRoutes from "./routes/users.js";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import cors from "cors";
+import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
 import "./loadEnv.js";
 
 const app = express();
@@ -14,22 +16,27 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// MULTER
+// CLOUDINARY
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "../Client/public/upload");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "blog",
+    allowed_formats: ["jpg", "png", "webp", "svg"],
+    public_id: (req, file) => "blog",
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 app.post("/api/upload", upload.single("file"), function (req, res) {
-  const file = req.file;
-  res.status(200).json(file.filename);
+  res.json(req.file.filename);
 });
 
 // CORS
