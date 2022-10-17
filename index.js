@@ -13,12 +13,12 @@ const app = express();
 
 // CORS
 
-const FRONT_URL = process.env.FRONT_URL;
+const frontURL = process.env.FRONT_URL;
 
 app.use(
   cors({
     credentials: true,
-    origin: "https://meta-blog-3-0.netlify.app",
+    origin: frontURL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     optionsSuccessStatus: 200,
   })
