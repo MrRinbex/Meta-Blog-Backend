@@ -65,22 +65,3 @@ const port = process.env.PORT || 8800;
 app.listen(port, () => {
   console.log(`Connected on http://localhost:${port}`);
 });
-
-//TEST
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://meta-blog-3-0.netlify.app"
-  );
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET,PUT,POST,DELETE,UPDATE,OPTIONS"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
-  );
-  next();
-});

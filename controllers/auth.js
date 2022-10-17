@@ -27,9 +27,9 @@ export const register = (req, res) => {
   });
 };
 
-export const login = (req, res) => {
-  // CHECK USER
+// CHECK USER
 
+export const login = (req, res) => {
   const q = "SELECT * FROM users WHERE username = ?";
 
   database.query(q, [req.body.username], (err, data) => {
@@ -58,9 +58,9 @@ export const login = (req, res) => {
   });
 };
 
-export const logout = (req, res) => {
-  // USER LOG OUT
+// USER LOG OUT
 
+export const logout = (req, res) => {
   res
     .clearCookie("access_token", {
       sameSite: "none",
