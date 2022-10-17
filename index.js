@@ -55,6 +55,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/users", usersRoutes);
 
-app.listen(8800, () => {
-  console.log("Connected");
+//PORT
+
+const PORT = process.env.PORT || 8800;
+
+app.listen(PORT, () => {
+  console.log(`Connected on http://localhost:${PORT}`);
 });
