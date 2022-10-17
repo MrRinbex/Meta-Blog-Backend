@@ -49,7 +49,7 @@ app.use(
   })
 );
 
-// ROUTES
+// ROUTES /
 
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
