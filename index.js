@@ -60,8 +60,8 @@ app.use("/api/users", usersRoutes);
 
 //PORT
 
-const PORT = process.env.PORT || 8800;
+// const PORT = process.env.PORT || 8800;
 
-app.listen(PORT, () => {
-  console.log(`Connected on http://localhost:${PORT}`);
+app.listen(8800, () => {
+  console.log(`Connected on http://localhost:8800`);
 });

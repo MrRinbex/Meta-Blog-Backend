@@ -51,6 +51,7 @@ export const login = (req, res) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
+        domain: "https://meta-blog-3-0.netlify.app",
       })
       .status(200)
       .json(other);
