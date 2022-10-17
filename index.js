@@ -11,6 +11,18 @@ import "./loadEnv.js";
 
 const app = express();
 
+// CORS
+
+const FRONT_URL = process.env.FRONT_URL;
+
+app.use(
+  cors({
+    credentials: true,
+    origin: "https://meta-blog-3-0.netlify.app",
+    optionsSuccessStatus: 200,
+  })
+);
+
 // USE JSON & COOKIE PARSER
 
 app.use(express.json());
@@ -38,18 +50,6 @@ const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), function (req, res) {
   res.json(req.file.filename);
 });
-
-// CORS
-
-const FRONT_URL = process.env.FRONT_URL;
-
-app.use(
-  cors({
-    credentials: true,
-    origin: FRONT_URL,
-    optionsSuccessStatus: 200,
-  })
-);
 
 // ROUTES /
 
