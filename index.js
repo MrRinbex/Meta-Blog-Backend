@@ -43,16 +43,17 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 
 const FRONT_URL = process.env.FRONT_URL;
 
-var allowCrossDomain = function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", FRONT_URL);
-  next();
-};
-app.use(allowCrossDomain);
+// var allowCrossDomain = function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", FRONT_URL);
+//   res.header("Access-Control-Allow-Origin", FRONT_URL);
+//   next();
+// };
+// app.use(allowCrossDomain);
 
 app.use(
   cors({
     credentials: true,
-    origin: FRONT_URL || "http://localhost:4000",
+    origin: "http://localhost:4000",
     optionsSuccessStatus: 200,
   })
 );
