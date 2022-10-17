@@ -46,7 +46,7 @@ const FRONT_URL = process.env.FRONT_URL;
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:4000",
+    origin: FRONT_URL,
     optionsSuccessStatus: 200,
   })
 );
