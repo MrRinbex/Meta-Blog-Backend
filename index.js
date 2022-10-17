@@ -44,7 +44,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONT_URL ?? "http://localhost:4000",
+    origin: process.env.FRONT_URL || "http://localhost:4000",
     optionsSuccessStatus: 200,
   })
 );
