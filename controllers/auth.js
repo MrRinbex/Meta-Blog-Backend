@@ -51,7 +51,7 @@ export const login = (req, res) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
-        maxAge: 1000 * 60 * 60,
+        maxAge: 3600,
       })
       .status(200)
       .json(other);
