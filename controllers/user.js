@@ -1,5 +1,6 @@
 import { database } from "../database.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import "../loadEnv.js";
 
 //FETCH ALL USERS
@@ -33,9 +34,13 @@ export const updateUser = (req, res) => {
     if (err) return res.status(403).json("Not valid Token");
 
     const userId = req.params.id;
-    const q = "UPDATE users SET `username`=?,`email`=?,`img`=? WHERE id=? ";
+    const q =
+      "UPDATE users SET `username`=?,`email`=?,`password`=?,`img`=? WHERE id=? ";
 
-    const values = [req.body.username, req.body.email, req.body.img];
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(req.body.password, salt);
+
+    const values = [req.body.username, req.body.email, req.body.img, hash];
 
     database.query(q, [...values, userId, userInfo.id], (err, data) => {
       if (err) {
