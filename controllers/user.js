@@ -40,7 +40,7 @@ export const updateUser = (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
-    const values = [req.body.username, req.body.email, req.body.img, hash];
+    const values = [req.body.username, req.body.email, hash, req.body.img];
 
     database.query(q, [...values, userId, userInfo.id], (err, data) => {
       if (err) {
