@@ -47,7 +47,14 @@ export const updateUser = (req, res) => {
         console.log(err);
         return res.status(500).json(data);
       }
-      res.json([...values]).status(201);
+      res
+        .json({
+          username: req.body.username,
+          email: req.body.email,
+          password: hash,
+          img: req.body.img,
+        })
+        .status(201);
     });
   });
 };
