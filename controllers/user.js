@@ -48,13 +48,7 @@ export const updateUser = (req, res) => {
         console.log(err);
         return res.status(500).json(data);
       }
-      return res.json("user updated").status(201);
-    });
-    const qUser = "SELECT * FROM users WHERE id=?";
-
-    database.query(qUser, [userId], (err, data) => {
-      if (err) return res.json(err).status(500);
-      return res.status(200).json(data[0]);
+      return res.json(data.insertId).status(201);
     });
   });
 };
