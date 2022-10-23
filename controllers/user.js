@@ -48,7 +48,7 @@ export const updateUser = (req, res) => {
         console.log(err);
         return res.status(500).json(data);
       }
-      return res.json(other).status(201);
+      return res.json(userInfo).status(201);
     });
   });
 };
