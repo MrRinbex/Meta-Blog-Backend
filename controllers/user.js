@@ -47,15 +47,7 @@ export const updateUser = (req, res) => {
         console.log(err);
         return res.status(500).json(data);
       }
-      const key = process.env.JWT_KEY;
-      const token = jwt.sign({ id: data[0].id }, key);
-      const { password, ...other } = data[0]; //DATA OTHER THEN PASSWORD
-      res
-        .cookie("access_token", token, {
-          httpOnly: true,
-        })
-        .status(200)
-        .json(other);
+      res.json([...values]).status(201);
     });
   });
 };
