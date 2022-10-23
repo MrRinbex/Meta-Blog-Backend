@@ -43,11 +43,12 @@ export const updateUser = (req, res) => {
     const values = [req.body.username, req.body.email, hash, req.body.img];
 
     database.query(q, [...values, userId, userInfo.id], (err, data) => {
+      const { password, ...other } = data[0];
       if (err) {
         console.log(err);
         return res.status(500).json(data);
       }
-      return res.json(data[0]).status(201);
+      return res.json(other).status(201);
     });
   });
 };
