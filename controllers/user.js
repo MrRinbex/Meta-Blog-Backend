@@ -70,7 +70,10 @@ export const deleteUser = (req, res) => {
       if (err) {
         return res.status(403).json(err);
       }
-      return res.json("User deleted");
+      return res.json("User deleted").clearCookie("access_token", {
+        sameSite: "none",
+        secure: true,
+      });
     });
   });
 };
