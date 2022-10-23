@@ -49,6 +49,7 @@ export const updateUser = (req, res) => {
       }
       res
         .json({
+          id: userId,
           username: req.body.username,
           email: req.body.email,
           password: hash,
