@@ -49,7 +49,7 @@ export const updateUser = (req, res) => {
       }
       res
         .json({
-          id: userId,
+          id: parseInt(userId),
           username: req.body.username,
           email: req.body.email,
           password: hash,
