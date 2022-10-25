@@ -72,7 +72,6 @@ export const deleteUser = (req, res) => {
     if (err) return res.status(403).json("Not valid Token");
 
     const userId = req.params.id;
-    // const q = "DELETE FROM users WHERE id=?";
     const q =
       "DELETE users, posts FROM users INNER JOIN posts ON users.id = posts.userid WHERE users.id=?";
 
