@@ -6,7 +6,6 @@ Package using :
 
 - AWS RDS \*\*\*
 - Mysql
-- Netlify
 - Heroku
 - Cloudinary/Storage
 - Multer
